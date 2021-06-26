@@ -14,7 +14,7 @@
      */
     function onDrop(event) {
         const files = event.dataTransfer.files;
-        let content = ""
+        let content = []
         let display = document.getElementById("display");
         display.innerHTML = "";
 
@@ -28,9 +28,9 @@
                     replaced = dataValues.join()
                 }
                 display.innerHTML += replaced + "<br />";
-                content += replaced + "\r\n"
+                content.push(replaced)
             }
-            const blob = new Blob([toShiftJIS(content)], {"type": "text/csv; charset=iso-8859-1"});
+            const blob = new Blob([toShiftJIS(content.join("\r\n"))], {"type": "text/csv; charset=iso-8859-1"});
             document.getElementById("download").href = window.URL.createObjectURL(blob);
         };
         reader.readAsText(files[0], "shift-jis");
