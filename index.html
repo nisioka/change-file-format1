@@ -20,7 +20,7 @@
 
         const reader = new FileReader();
         reader.onload = () => {
-            for (const row of reader.result.split("\n")) {
+            for (const row of reader.result.split("\r\n")) {
                 let replaced = row.replaceAll("\"", "")
                 if (/^\d.*/.test(replaced)) {
                     let dataValues = replaced.split(",")
